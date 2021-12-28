@@ -1,0 +1,10 @@
+--- /home/lqm/Desktop/test/xv6-public/sysproc.c	2021-10-10 01:09:37.487447807 -0700
++++ /home/lqm/Desktop/xv6-public/sysproc.c	2021-10-08 06:39:55.018301799 -0700
+@@ -89,3 +89,7 @@
+   release(&tickslock);
+   return xticks;
+ }
++
++int sys_count_traps(void) {
++  return count_traps();
++}

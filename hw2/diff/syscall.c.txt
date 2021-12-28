@@ -1,0 +1,18 @@
+--- /home/lqm/Desktop/test/xv6-public/syscall.c	2021-10-10 01:09:37.487447807 -0700
++++ /home/lqm/Desktop/xv6-public/syscall.c	2021-10-08 06:38:57.411245108 -0700
+@@ -103,6 +103,7 @@
+ extern int sys_wait(void);
+ extern int sys_write(void);
+ extern int sys_uptime(void);
++extern int sys_count_traps(void);
+ 
+ static int (*syscalls[])(void) = {
+ [SYS_fork]    sys_fork,
+@@ -126,6 +127,7 @@
+ [SYS_link]    sys_link,
+ [SYS_mkdir]   sys_mkdir,
+ [SYS_close]   sys_close,
++[SYS_count_traps]   sys_count_traps,
+ };
+ 
+ void

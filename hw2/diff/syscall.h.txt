@@ -1,0 +1,7 @@
+--- /home/lqm/Desktop/test/xv6-public/syscall.h	2021-10-10 01:09:37.487447807 -0700
++++ /home/lqm/Desktop/xv6-public/syscall.h	2021-10-07 08:39:47.330267004 -0700
+@@ -20,3 +20,4 @@
+ #define SYS_link   19
+ #define SYS_mkdir  20
+ #define SYS_close  21
++#define SYS_count_traps  22

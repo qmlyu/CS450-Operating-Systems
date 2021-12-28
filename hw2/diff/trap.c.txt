@@ -1,0 +1,63 @@
+--- /home/lqm/Desktop/test/xv6-public/trap.c	2021-10-10 01:09:37.487447807 -0700
++++ /home/lqm/Desktop/xv6-public/trap.c	2021-10-08 09:39:58.429032522 -0700
+@@ -32,10 +32,28 @@
+   lidt(idt, sizeof(idt));
+ }
+ 
++struct proc_trap {
++  int pid;
++  int trap_handler[T_DEFAULT];
++};
++
++static struct proc_trap pts[NPROC];
++
++void update_count_traps (struct trapframe *tf) {
++  struct proc *curproc = myproc();
++  pts[curproc->pid].pid = curproc->pid;
++  pts[curproc->pid].trap_handler[tf->trapno]++;
++}
++
+ //PAGEBREAK: 41
+ void
+ trap(struct trapframe *tf)
+ {
++  if (myproc())
++  {
++    update_count_traps(tf);
++  }
++  
+   if(tf->trapno == T_SYSCALL){
+     if(myproc()->killed)
+       exit();
+@@ -110,3 +128,31 @@
+   if(myproc() && myproc()->killed && (tf->cs&3) == DPL_USER)
+     exit();
+ }
++
++int count_traps(void) {
++  int flag[NPROC];
++  for (int i = 0; i < NPROC; i++) {
++    if (!pts[i].pid) {
++      continue;
++    }
++
++    flag[i] = 0;
++    for (int j = 0; j < T_DEFAULT; j++) {
++        if (!pts[i].trap_handler[j]) {
++          continue;
++        }
++
++        if (!flag[i]) {
++            cprintf("pid %d:\n", pts[i].pid);
++        }
++          
++          flag[i] += pts[i].trap_handler[j];
++          cprintf(" trapno:%d count:%d\n", j, pts[i].trap_handler[j]);
++      }
++
++      if (flag[i]) {
++        cprintf(" trapped_count:%d:\n", flag[i]);
++      }
++  }
++  return 22;
++}

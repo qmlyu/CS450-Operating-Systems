@@ -1,0 +1,10 @@
+--- /home/lqm/Desktop/test/xv6-public/defs.h	2021-10-10 01:09:37.479448146 -0700
++++ /home/lqm/Desktop/xv6-public/defs.h	2021-10-08 06:39:13.895354581 -0700
+@@ -164,6 +164,7 @@
+ extern uint     ticks;
+ void            tvinit(void);
+ extern struct spinlock tickslock;
++int count_traps(void);
+ 
+ // uart.c
+ void            uartinit(void);

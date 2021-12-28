@@ -1,0 +1,19 @@
+--- /home/lqm/Desktop/test/xv6-public/Makefile	2021-10-10 01:09:37.479448146 -0700
++++ /home/lqm/Desktop/xv6-public/Makefile	2021-10-09 21:58:50.372606899 -0700
+@@ -180,6 +180,7 @@
+ 	_stressfs\
+ 	_usertests\
+ 	_wc\
++	_ct\
+ 	_zombie\
+ 
+ fs.img: mkfs README $(UPROGS)
+@@ -249,7 +250,7 @@
+ 
+ EXTRA=\
+ 	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c\
+-	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c zombie.c\
++	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c wc.c ct.c zombie.c\
+ 	printf.c umalloc.c\
+ 	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
+ 	.gdbinit.tmpl gdbutil\
